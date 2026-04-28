@@ -2,16 +2,19 @@
 
 def checkmate(board):
 
+    # ===== ส่วนที่ 1: เตรียมข้อมูลกระดาน =====
     lines = [line for line in board.strip().split('\n') if line.strip()]
     if not lines:
         return False 
 
+    # ===== ส่วนที่ 2: ตรวจสอบว่ากระดานเป็นรูปสี่เหลี่ยมจัตุรัส =====
     size = len(lines)
     for row in lines:
         if len(row) != size:
             print("Error")
             return False   
     
+     # ===== ส่วนที่ 3: ค้นหาตำแหน่ง King และตรวจสอบจำนวน =====
     king_pos = None 
     king_count = 0 
     pieces_type = ('K', 'Q', 'R', 'B', 'P') 
@@ -27,6 +30,7 @@ def checkmate(board):
         print("Error")
         return False
 
+    # ===== ส่วนที่ 4: ตรวจสอบการรุก (Threat Detection) =====
     king_i, king_j = king_pos
     directions = {
         'straight': [(0, 1), (0, -1),(1, 0), (-1, 0)], 
@@ -78,5 +82,6 @@ def checkmate(board):
             nr += dr
             nc += dc
 
+    # ===== สรุปผล: ถ้าตรวจครบทุกทิศแล้วไม่เจอการรุกเลย =====
     print("Fail")
     return False
