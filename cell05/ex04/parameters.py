@@ -3,6 +3,6 @@
 import sys
 
 def main():
-    res = sys.argv[1:]
-    print("Number of parameters:",len(res))
+    res = len(sys.argv[1:])
+    print("Number of parameters:", res)
 main()
